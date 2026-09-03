@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: task-manager-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGO_URI=${MONGO_URI}
+    restart: always
