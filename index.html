@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- AUTH CONTAINER SIGN IN and REGISTER -->
+<div class="auth-container" id="auth-section">
+    <header class="app-header">
+        <div class="auth-brand-row">
+            <span class="auth-logo">📝</span>
+            <h1 class="auth-brand-title">Task Manager</h1>
+        </div>
+        <!-- Sign In Part -->
+        <h2 id="auth-title">Sign In</h2>
+        <p id="auth-subtitle">Enter your credentials to access Task Manager</p>
+    </header>
+
+    <form id="auth-form">
+        <!-- Register Part -->
+        <div class="input-group hidden" id="name-group">
+            <label for="auth-name">Full Name</label>
+            <input type="text" id="auth-name" placeholder="John Doe">
+        </div>
+
+        <div class="input-group">
+            <label for="auth-email">Email</label>
+            <input type="email" id="auth-email" placeholder="name@gmail.com" required>
+        </div>
+
+        <div class="input-group">
+            <label for="auth-password">Password</label>
+            <input type="password" id="auth-password" placeholder="••••••••" required>
+        </div>
+
+        <!-- Error Message -->
+        <p id="auth-message" class="auth-message hidden"></p>
+
+        <!-- Buttons -->
+        <div class="auth-buttons">
+            <button type="submit" class="btn-primary" id="submit-auth-btn">Sign In</button>
+            <button type="button" class="btn-secondary" id="switch-auth-btn">Register</button>
+        </div>
+    </form>
+</div>
+
+    <!-- MAIN DASHBOARD SECTION -->
+<div class="app-container hidden" id="dashboard-section">
+   <!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <div class="nav-brand">
+            <span>📝</span>
+            <span>Task Manager</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="nav-link active" id="nav-add-task">Add Task</a></li>
+            
+            <!-- NEW DROPDOWN MENU HERE -->
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link" id="nav-my-tasks" aria-haspopup="true" aria-expanded="false">My Tasks <span aria-hidden="true">▾</span></a>
+                <div class="nav-dropdown-content" id="my-tasks-dropdown">
+                    <a href="#" data-category="all">🌐 All Categories</a>
+                    <a href="#" data-category="Work">💼 Work</a>
+                    <a href="#" data-category="Personal">👤 Personal</a>
+                    <a href="#" data-category="Education">📚 Education</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="nav-right">
+        <span class="user-greeting">Hi, <strong id="user-email-display">Admin</strong></span>
+        <button type="button" id="logout-btn" class="btn-logout">Log Out</button>
+    </div>
+</nav>
+
+    <!-- Add task card -->
+    <section class="task-form-section" id="task-form-section">
+        <form id="task-form">
+            <input 
+                type="text" 
+                id="task-input" 
+                placeholder="Add a new task..." 
+                autocomplete="off" 
+                required
+            >
+            <input type="date" id="task-date-input">
+            
+            <!-- Category Selection -->
+            <select id="task-category-input" class="task-select" aria-label="Task category">
+                <option value="Work">💼 Work</option>
+                <option value="Personal" selected>👤 Personal</option>
+                <option value="Education">📚 Education</option>
+            </select>
+
+            <!-- Priority Selection -->
+            <select id="task-priority-input" class="task-select" aria-label="Task priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <button type="submit" id="add-btn" class="btn-primary">Add Task</button>
+        </form>
+    </section>
+
+    <!-- Task list area-->
+    <main>
+        <!-- STATUS AND PRIORITY FILTERS -->
+        <div class="task-list-heading">
+            <div>
+                <p class="eyebrow">YOUR WORKSPACE</p>
+                <h2 id="task-view-title">All Tasks</h2>
+            </div>
+            <span class="task-counter" id="task-counter">0 Tasks</span>
+        </div>
+
+        <div class="task-filters-bar">
+            <div class="task-filters" id="status-filters">
+                <button type="button" class="filter-btn active" id="filter-all" onclick="setStatusFilter('all', this)">All</button>
+                <button type="button" class="filter-btn" id="filter-active" onclick="setStatusFilter('active', this)">Active</button>
+                <button type="button" class="filter-btn" id="filter-completed" onclick="setStatusFilter('completed', this)">Completed</button>
+            </div>
+
+            <!-- Only Priority Sort Remains as Dropdown -->
+            <div class="task-filters-dropdowns" id="my-tasks-filter-dropdowns" style="display: none;">
+                <select id="priority-filter-select" class="filter-select" onchange="setPriorityTab(this.value)">
+                    <option value="all">All Priorities</option>
+                    <option value="high">🔴 High</option>
+                    <option value="medium">🟡 Medium</option>
+                    <option value="low">🟢 Low</option>
+                </select>
+            </div>
+        </div>
+        <ul id="task-list" class="task-list"></ul>
+    </main>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+
+ <script src="api.js"></script>
+ <script src="app.js"></script>
+</body> 
+</html>
