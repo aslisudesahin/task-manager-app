@@ -105,7 +105,7 @@ app.delete('/api/tasks/:id', async (req, res) => {
     }
 });
 
-// PUT update task (category, priority ve completed/text güncellemeleri eklendi)
+// PUT update task 
 app.put('/api/tasks/:id', async (req, res) => {
     try {
         const taskId = req.params.id;
