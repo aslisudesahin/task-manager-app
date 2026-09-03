@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'https://task-manager-app-wm74.onrender.com';
 
 // add anew user
 async function saveUserstoStorage(user) {

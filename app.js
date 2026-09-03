@@ -227,7 +227,7 @@ taskForm.addEventListener('submit', async (e) => {
 
     const dateValue = taskDateInput.value;
     const category = document.getElementById('task-category-input').value;
-    const priority = document.getElementById('task-priority-input').value; // Priority eksikti, eklendi
+    const priority = document.getElementById('task-priority-input').value; 
     const text = taskInput.value.trim();
     
     if (!text || !currentUser) return;
